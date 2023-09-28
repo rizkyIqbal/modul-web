@@ -1,0 +1,13 @@
+table, th, td {
+    border: 1px solid;
+    background-color: gold;
+}
+th,td{
+    padding: 5px;
+    text-align: center;
+    color: black;
+}
+
+.textTd{
+    font-weight: 700;
+}
