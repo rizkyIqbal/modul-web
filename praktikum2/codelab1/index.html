@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modul2</title>
+  </head>
+  <body>
+    <h1>PENJUMLAHAN BILANGAN</h1>
+    <div>
+      Bilangan Pertama: <input type="number" id="angka1" />
+      Bilangan Kedua: <input type="number" id="angka2" />
+    </div>
+    <div style="margin-top: 10px">
+      <button id="sum" onclick="jumlah()">Jumlahkan</button>
+      <button id="reset" onclick="ulang()">Ulang</button>
+    </div>
+    <script>
+        const angkaSatu = document.getElementById("angka1");
+        const angkaDua = document.getElementById("angka2");
+
+        function jumlah() {
+            let angkaSatuParse = parseFloat(angkaSatu.value);
+            let angkaDuaParse = parseFloat(angkaDua.value);
+
+            if (isNaN(angkaSatuParse) || isNaN(angkaDuaParse)) {
+                alert("Inputan tidak sesuai");
+                return;
+            }
+
+            const product = angkaSatuParse + angkaDuaParse;
+
+            alert(product);
+        }   
+
+        function ulang() {
+            angkaSatu.value = "";
+            angkaDua.value = "";
+            // resultDisplay.textContent = "";
+        }
+    </script>
+  </body>
+</html>
