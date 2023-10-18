@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/font-awesome.min.css">
+    <style>
+        .main-section {
+            padding-top: 46px;
+            padding-left: 350px;
+            padding-right: 350px;
+        }
+        .bg-primary {
+            background-color: #3d8bfd !important;
+        }
+        .bg-secondary {
+            background-color: #198754 !important;
+        }
+        .div-section {
+            max-width: 100%;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            background: #fff;
+        }
+        .section {
+            max-width: 100%;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            background: #fff;
+            padding-bottom: 40px;
+        }
+        .border-1 {
+            border-style: solid;
+            border-width: 0.5px;
+        }
+        .text-white {
+            color: #fff;
+        }
+        .input-form {
+            width: 100%;
+            height: 35px;
+            border: none;
+            border: solid 1px #eaeaea;
+            border-radius: 5px;
+            padding-left: 10px;
+        }
+        .flex {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-section">
+        <div class="bg-primary div-section text-white" style="padding-left: 20px;">
+            <p>Add Activity</p>
+        </div>
+        <div class="section border-1" style="padding-left: 18px; padding-right: 30px; border-color: #ddd; display: block !important;">
+            <p>Activity</p>
+            <div class="flex">
+                <input class="input-form" type="text" name="" id="inputValue" placeholder="Pinjam seratus sama teman">
+                <button class="bg-secondary text-white" style="border: none; width: 150px; border-radius: 5px; margin-left: 20px;" onclick="submit()">Add</button>
+            </div>
+        </div>
+        <div class="div-section text-white" style="padding-left: 20px; background: #1aa179;">
+            <p>List Activities</p>
+        </div>
+        <div class="section border-1" id="contentItems" style="padding-left: 18px; padding-right: 30px; padding-top: 20px; border-color: #ddd; display: block !important;">
+            <!-- <div class="contentItems" style="position: relative;">
+                <input class="input-form contentItems" type="text" name="" id="" placeholder="Pinjam seratus sama teman" style="display: block !important; width: 100%;" value="">
+                <button class="bg-secondary text-white contentItems" style="border: none; width: 150px; border-radius: 5px; margin-left: 20px; position: absolute; top: 10px; right: 175px;">
+                    Add
+                </button>
+                <button class="text-white contentItems" style="background-color: #dc3545; border: none; width: 150px; border-radius: 5px; margin-left: 20px; position: absolute; top: 10px; right: 0px;">
+                    Delete
+                </button>
+            </div> -->
+        </div>
+    </div>
+
+    <script>
+        let data = [];
+        let output = document.getElementById('contentItems');
+
+        function renderItems() {
+            output.innerHTML = ''; // Clear the existing content
+            for (let i = 0; i < data.length; i++) {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'contentItems';
+
+                const inputElement = document.createElement('input');
+                inputElement.className = 'input-form contentItems';
+                inputElement.type = 'text';
+                inputElement.value = data[i];
+
+                const editButton = document.createElement('button');
+                editButton.className = 'bg-secondary text-white contentItems';
+                editButton.textContent = 'Edit';
+                editButton.style.border = "none";
+                editButton.style.width = "70px";
+                editButton.style.borderRadius = "5px";
+                editButton.style.position = "block";
+                editButton.style.paddingTop = "10px";
+                editButton.style.paddingBottom = "10px";
+                editButton.style.alignItems = "center"
+                editButton.style.marginRight = "10px"
+                editButton.onclick = () => editItem(i);
+
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'text-white contentItems';
+                deleteButton.textContent = 'Delete';
+                deleteButton.style.backgroundColor = "#dc3545";
+                deleteButton.style.border = "none";
+                deleteButton.style.width = "150px";
+                deleteButton.style.borderRadius = "5px";
+                deleteButton.style.position = "block";
+                deleteButton.style.paddingTop = "10px";
+                deleteButton.style.paddingBottom = "10px";
+                deleteButton.style.alignItems = "center"
+                deleteButton.onclick = () => deleteItem(i);
+
+                itemDiv.appendChild(inputElement);
+                itemDiv.appendChild(editButton);
+                itemDiv.appendChild(deleteButton);
+
+                output.appendChild(itemDiv);
+            }
+        }
+
+        function editItem(index) {
+            const newValue = prompt('Edit the activity:', data[index]);
+            if (newValue !== null) {
+                data[index] = newValue;
+                renderItems();
+            }
+        }
+
+        function deleteItem(index) {
+            const confirmDelete = confirm('Are you sure you want to delete this activity?');
+            if (confirmDelete) {
+                data.splice(index, 1);
+                renderItems();
+            }
+        }
+
+        // Initial rendering
+        renderItems();
+
+        function submit() {
+            let inputValue = document.getElementById('inputValue').value;
+            data.push(inputValue);
+            renderItems();
+        }
+    </script>
+</body>
+</html>
